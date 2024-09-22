@@ -1,2 +1,128 @@
 # AstroWatch.SpaceTrack
 AstroWatch.SpaceTrack is a .NET SDK for easy integration with the SpaceTrack API, allowing access to satellite data, orbital elements, and space debris tracking. Features include secure API requests, satellite position queries, TLE retrieval, launch/decay events, and built-in error handling.
+
+Here's the Markdown code for the **README.md** file:
+
+
+# AstroWatch.SpaceTrack
+
+AstroWatch.SpaceTrack is a .NET SDK designed to integrate with the SpaceTrack API, simplifying access to satellite data, orbital elements, and space debris tracking. This SDK allows developers to seamlessly interact with the SpaceTrack API to build space-related applications with ease.
+
+## Features
+
+- Retrieve satellite catalog data, orbital elements, and TLE (Two-Line Element) sets.
+- Perform satellite position and tracking queries.
+- Query launch and decay events for space objects.
+- Support for secure API authentication.
+- Robust error handling and response parsing.
+
+## Installation
+
+To install AstroWatch.SpaceTrack via [NuGet](https://www.nuget.org/):
+
+```bash
+dotnet add package AstroWatch.SpaceTrack
+```
+
+Alternatively, you can install it using the NuGet Package Manager in Visual Studio by searching for `AstroWatch.SpaceTrack`.
+
+## Getting Started
+
+The SDK consist of two main clients: the public client and the restricted client. Public client facilitates access to the publicly available SpaceTrack data "Classes" and the restricted client does the same for restricted ones. To learn more about space track API concepts visit  [Introduction to the API - SpaceTrack.org](https://www.space-track.org/documentation#/api)
+
+The public classes are end-to-end tested but the restricted ones are not simply because I don't have access to them. I would encourage anyone with access to those endpoints to contribute to this repository by testing and extending the SDK.
+
+You can initialize the SDK in two ways:
+
+
+### Using Dependency Injection
+1. Add the following json property to appsettings.json:
+```json
+  "SpaceTrackSettings": {
+    "Username": "YOUR_USERNAME",
+    "Password": "YOUR_PASSWORD"
+  }
+```
+2. Register the configurations and SpaceTrackSDK services to the ServiceCollection. Bellow is an example of how it's done in an ASP.NET core application's Program.cs file: 
+```csharp
+using AstroWatch.SpaceTrack;
+using AstroWatch.SpaceTrack.Extensions.DependencyInjection;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Register the configurations
+builder.Services.Configure<SpaceTrackSettings>(builder.Configuration.GetSection(SpaceTrackSettings.SectionName));
+// Register SpaceTrack service
+builder.Services.AddSpaceTrack();
+
+
+builder.Services.AddMvc();
+builder.Services.AddOptions();
+builder.Services.AddControllers();
+var app = builder.Build();
+
+app.UseHttpsRedirection();
+app.MapControllers();
+app.Run();
+```
+
+3. Inject the client(s) to your application classes:
+```csharp
+private ISpaceTrackPublicClient _spaceTrackPublicClient;
+
+// If needed:
+// private ISpaceTrackRestrictedClient _spaceTrackRestrictedClient;
+
+public TestController(ISpaceTrackPublicClient spaceTrackPublicClient)
+{
+    _spaceTrackPublicClient = spaceTrackPublicClient;
+}
+```
+### Without Dependency Injection
+
+To access the SpaceTrack API, you need a valid account on [SpaceTrack.org](https://www.space-track.org). Once you have your credentials, authenticate as follows:
+
+```csharp
+using AstroWatch.SpaceTrack;
+
+var authenticator = new SpaceTrackAuthenticator(new SpaceTrackSettings("YOUR_USERNAME", "YOUR_PASSWORD"));
+var spaceTrackPublic = new SpaceTrackPublicClient(authenticator);
+
+// *** if needed, this is how you can also instanciate the restricted client
+// var spaceTrackRestricted = new SpaceTrackRestrictedClient(authenticator);
+```
+
+### Fetching Data
+
+To get data from space track you should simply follow the pattern below:
+
+await **_SpaceTrackClient
+.Class[.FilterOn(c => c.PredicateName)
+.Operator(Value or Condition)]
+.GetAsSomeFormatAsync();_**
+
+Below you can see a few examples of how different types of data are queried:
+
+```csharp
+spaceTrack.Decay.GetAsCsvAsync("DecayData.csv");
+```
+
+## Documentation
+
+For detailed documentation and API reference, visit the [official docs](https://github.com/yourusername/AstroWatch.SpaceTrack).
+
+## Contributing
+
+We welcome contributions! If you'd like to contribute, please fork the repository and submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any inquiries or support, feel free to reach out via [milad665@gmail.com](mailto:milad665@gmail.com).
+
+---
+
+Happy Coding! 🚀
