@@ -3,6 +3,20 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
         <Nullable>enable</Nullable>
+
+        <PackageId>AstroWatch.SpaceTrack</PackageId>
+        <Version>1.0.0</Version> <!-- Use semantic versioning -->
+        <Authors>Milad Soghrati</Authors>
+        <Company>AstroWatch</Company>
+        <Description>AstroWatch.SpaceTrack is a .NET SDK for easy integration with the SpaceTrack API, allowing access to satellite data, orbital elements, and space debris tracking. Features include secure API requests, satellite position queries, TLE retrieval, launch/decay events, and built-in error handling.</Description>
+        <PackageTags>dotnet;library;spacetrack;space-track;space-track.org;sdk</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression> <!-- Use SPDX license identifier -->
+        <RepositoryUrl>https://github.com/milad665/AstroWatch.SpaceTrack</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+<!--        <PackageProjectUrl>https://github.com/yourusername/your-repo</PackageProjectUrl>-->
+        <PackageIcon>icon.png</PackageIcon> <!-- Relative path to an icon file -->
+        <PackageReleaseNotes>Initial release of AstroWatch.SpaceTrack.</PackageReleaseNotes>
+
     </PropertyGroup>
 
     <ItemGroup>
