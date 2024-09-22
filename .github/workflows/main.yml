@@ -22,10 +22,12 @@ jobs:
           fetch-depth: 0 # Get all history to allow automatic versioning using MinVer
         
       - name: Set up .NET SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 'netstandard2.1'  # or the version of .NET you're using
-
+          dotnet-version: | 
+            6.0.x
+            7.0.x
+            8.0.x
       - name: Restore dependencies
         run: dotnet restore
 
