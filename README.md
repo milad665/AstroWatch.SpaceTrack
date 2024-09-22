@@ -115,10 +115,6 @@ For detailed documentation and API reference, visit the [official docs](https://
 
 We welcome contributions! If you'd like to contribute, please fork the repository and submit a pull request.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Contact
 
 For any inquiries or support, feel free to reach out via [milad665@gmail.com](mailto:milad665@gmail.com).
