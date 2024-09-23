@@ -17,8 +17,6 @@
         <PackageIcon>icon.png</PackageIcon> <!-- Relative path to an icon file -->
         <PackageReleaseNotes>Initial release of AstroWatch.SpaceTrack.</PackageReleaseNotes>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-
-        <DebugType>embedded</DebugType>
     </PropertyGroup>
 
     <ItemGroup>
