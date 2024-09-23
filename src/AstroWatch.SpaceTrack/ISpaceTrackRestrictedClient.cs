@@ -4,6 +4,9 @@ namespace AstroWatch.SpaceTrack
 {
     public interface ISpaceTrackRestrictedClient
     {
+        /// <summary>
+        /// Client for restricted classes of Space-track.org api
+        /// </summary>
         CarClient Car { get; }
         ConjunctionDataMessageClient ConjunctionDataMessage { get; }
         CurrentEventClient CurrentEvent { get; }
