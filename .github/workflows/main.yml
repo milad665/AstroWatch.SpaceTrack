@@ -72,8 +72,9 @@ jobs:
       # using the --excluded-rules or --excluded-rule-ids option
       - name: Validate package
         run:  |
-          for package "${{ env.NuGetDirectory }}/*.nupkg"; do 
-          meziantou.validate-nuget-package "$package"
+          for package ${{ env.NuGetDirectory }}/*.nupkg
+          do 
+            meziantou.validate-nuget-package "$package"
           done
 
   run_test:
