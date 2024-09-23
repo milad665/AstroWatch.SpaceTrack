@@ -13,15 +13,12 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression> <!-- Use SPDX license identifier -->
         <RepositoryUrl>https://github.com/milad665/AstroWatch.SpaceTrack</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-<!--        <PackageProjectUrl>https://github.com/yourusername/your-repo</PackageProjectUrl>-->
+        <PackageProjectUrl>https://github.com/milad665/AstroWatch.SpaceTrack</PackageProjectUrl>
         <PackageIcon>icon.png</PackageIcon> <!-- Relative path to an icon file -->
         <PackageReleaseNotes>Initial release of AstroWatch.SpaceTrack.</PackageReleaseNotes>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
 
-    </PropertyGroup>
-
-    <PropertyGroup>
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <DebugType>embedded</DebugType>
     </PropertyGroup>
 
     <ItemGroup>
