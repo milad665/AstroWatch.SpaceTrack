@@ -16,7 +16,7 @@
         <PackageProjectUrl>https://github.com/milad665/AstroWatch.SpaceTrack</PackageProjectUrl>
         <PackageIcon>icon.png</PackageIcon> <!-- Relative path to an icon file -->
         <PackageReleaseNotes>Initial release of AstroWatch.SpaceTrack.</PackageReleaseNotes>
-        <PackageReadmeFile>/../../README.md</PackageReadmeFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
 
         <DebugType>embedded</DebugType>
     </PropertyGroup>
@@ -36,6 +36,7 @@
       <None Include="icon.png" Pack="true" PackagePath="">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
 </Project>
