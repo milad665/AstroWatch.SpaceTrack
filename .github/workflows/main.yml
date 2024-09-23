@@ -64,7 +64,6 @@ jobs:
           path: ${{ env.NuGetDirectory }}
 
       - name: Install nuget validator
-        working-directory: ./src
         run: dotnet tool update Meziantou.Framework.NuGetPackageValidation.Tool --global
 
       # Validate metadata and content of the NuGet package
