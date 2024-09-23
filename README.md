@@ -129,10 +129,6 @@ var decayedSatellites = await spaceTrack.SatelliteCatalog.FilterOn(s => s.DecayD
     .GetAsDeSerializedListAsync();
 ```
 
-## Documentation
-
-For detailed documentation and API reference, visit the [official docs](https://github.com/yourusername/AstroWatch.SpaceTrack).
-
 ## Contributing
 
 We welcome contributions! If you'd like to contribute, please fork the repository and submit a pull request.
