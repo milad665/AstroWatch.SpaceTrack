@@ -111,6 +111,6 @@ jobs:
       - name: Publish NuGet package
         working-directory: ./src
         run: |
-          foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
+          for file in $(find ${{ env.NuGetDirectory }} -type f -name '*.nupkg'); do 
               dotnet nuget push $file --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
-          }
+          done
