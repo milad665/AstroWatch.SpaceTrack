@@ -2,6 +2,9 @@
 
 namespace AstroWatch.SpaceTrack
 {
+    /// <summary>
+    /// Client for public classes of Space-track.org api
+    /// </summary>
     public interface ISpaceTrackPublicClient
     {
         AnnouncementClient Announcement { get; }
