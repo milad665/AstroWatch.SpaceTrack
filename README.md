@@ -51,7 +51,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Register the configurations
 builder.Services.Configure<SpaceTrackSettings>(builder.Configuration.GetSection(SpaceTrackSettings.SectionName));
-// Register SpaceTrack service
+// Register SpaceTrack services
 builder.Services.AddSpaceTrack();
 
 
