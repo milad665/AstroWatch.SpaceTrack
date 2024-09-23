@@ -36,10 +36,6 @@ jobs:
         working-directory: ./src
         run: dotnet build --configuration Release --no-restore
 
-      - name: Run unit tests
-        working-directory: ./src
-        run: dotnet test --configuration Release --no-restore --verbosity normal
-
       - name: Pack the NuGet package
         working-directory: ./src
         run: dotnet pack --configuration Release --no-build --no-restore --output ${{ env.NuGetDirectory }}
@@ -64,9 +60,11 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: nuget
+          working-directory: ./src
           path: ${{ env.NuGetDirectory }}
 
       - name: Install nuget validator
+        working-directory: ./src
         run: dotnet tool update Meziantou.Framework.NuGetPackageValidation.Tool --global
 
       # Validate metadata and content of the NuGet package
@@ -74,6 +72,7 @@ jobs:
       # If some rules are not applicable, you can disable them
       # using the --excluded-rules or --excluded-rule-ids option
       - name: Validate package
+        working-directory: ./src
         run: meziantou.validate-nuget-package (Get-ChildItem "${{ env.NuGetDirectory }}/*.nupkg")
 
   run_test:
@@ -83,6 +82,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
     - name: Run tests
+      working-directory: ./src
       run: dotnet test --configuration Release
 
   deploy:
@@ -97,6 +97,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: nuget
+          working-directory: ./src
           path: ${{ env.NuGetDirectory }}
 
       # Install the .NET SDK indicated in the global.json file
@@ -107,6 +108,7 @@ jobs:
       # Use --skip-duplicate to prevent errors if a package with the same version already exists.
       # If you retry a failed workflow, already published packages will be skipped without error.
       - name: Publish NuGet package
+        working-directory: ./src
         run: |
           foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
               dotnet nuget push $file --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
