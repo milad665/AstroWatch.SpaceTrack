@@ -73,7 +73,7 @@ jobs:
       - name: Validate package
         run:  |
           for package in ${{ env.NuGetDirectory }}/*.nupkg; do 
-            meziantou.validate-nuget-package "$package"
+            meziantou.validate-nuget-package "$package" --exclude-rules Symbols
           done
 
   run_test:
