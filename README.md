@@ -18,7 +18,7 @@ AstroWatch.SpaceTrack is a .NET SDK designed to integrate with the SpaceTrack AP
 
 ## Installation
 
-To install AstroWatch.SpaceTrack via [NuGet](https://www.nuget.org/):
+To install AstroWatch.SpaceTrack via [NuGet](https://www.nuget.org/packages/AstroWatch.SpaceTrack/):
 
 ```bash
 dotnet add package AstroWatch.SpaceTrack
