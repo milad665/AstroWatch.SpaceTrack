@@ -13,8 +13,7 @@ AstroWatch.SpaceTrack is a .NET SDK designed to integrate with the SpaceTrack AP
 - Retrieve satellite catalog data, orbital elements, and TLE (Two-Line Element) sets.
 - Perform satellite position and tracking queries.
 - Query launch and decay events for space objects.
-- Support for secure API authentication.
-- Robust error handling and response parsing.
+- Support for API authentication.
 
 ## Installation
 
