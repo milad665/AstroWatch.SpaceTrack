@@ -95,9 +95,11 @@ var spaceTrackPublic = new SpaceTrackPublicClient(authenticator);
 
 To get data from space track you should simply follow the pattern below:
 
-await **_SpaceTrackClient
-.Class[.FilterOn(c => c.PredicateName)
-.Operator(Value or Condition)]
+await **_SpaceTrackClient\
+.Class\
+[.FilterOn(c => c.PredicateName).Operator(Value or Condition)]\
+[.FilterOn(c => c.PredicateName).Operator(Value or Condition)]\
+...\
 .GetAsSomeFormatAsync();_**
 
 Below you can see a few examples of how different types of data are queried:
