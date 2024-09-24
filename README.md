@@ -1,10 +1,4 @@
 # AstroWatch.SpaceTrack
-AstroWatch.SpaceTrack is a .NET SDK for easy integration with the SpaceTrack API, allowing access to satellite data, orbital elements, and space debris tracking. Features include secure API requests, satellite position queries, TLE retrieval, launch/decay events, and built-in error handling.
-
-Here's the Markdown code for the **README.md** file:
-
-
-# AstroWatch.SpaceTrack
 
 AstroWatch.SpaceTrack is a .NET SDK designed to integrate with the SpaceTrack API, simplifying access to satellite data, orbital elements, and space debris tracking. This SDK allows developers to seamlessly interact with the SpaceTrack API to build space-related applications with ease.
 
@@ -95,10 +89,12 @@ var spaceTrackPublic = new SpaceTrackPublicClient(authenticator);
 
 To get data from space track you should simply follow the pattern below:
 
-await **_SpaceTrackClient
-.Class[.FilterOn(c => c.PredicateName)
-.Operator(Value or Condition)]
-.GetAsSomeFormatAsync();_**
+await **_SpaceTrackClient\
+    .Class\
+    [.FilterOn(c => c.PredicateName).Operator(Value or Condition)]\
+    [.FilterOn(c => c.PredicateName).Operator(Value or Condition)]\
+    ...\
+    .GetAsSomeFormatAsync();_**
 
 Below you can see a few examples of how different types of data are queried:
 
@@ -109,22 +105,23 @@ await spaceTrack.Decay.GetAsCsvAsync("DecayData.csv");
 //Get updates from the past 10 days for objects in LEO in TLE string format  
 var updatesForLeoObjectsInPastTenDays = await spaceTrack.GeneralPerturbations
     .FilterOn(p => p.MeanMotion)
-    .IsGreaterThan(11.25)
+      .IsGreaterThan(11.25)
     .FilterOn(p => p.Epoch)
-    .IsGreaterThan(PredicateValue.FromNumberOfDaysAgo(10))
+      .IsGreaterThan(PredicateValue.FromNumberOfDaysAgo(10))
     .GetAsTleStringAsync();
 
 //Get updates from the past 10 days for objects in GEO desrialized as a list of TLE data objects
 var updatesForGeoObjectsInPastTenDays = await spaceTrack.GeneralPerturbations
         .FilterOn(p => p.MeanMotion)
-        .IsBetween(0.99, 1.01)
+          .IsBetween(0.99, 1.01)
         .FilterOn(p => p.Eccentricity)
-        .IsLessThan(0.01)
+          .IsLessThan(0.01)
         .GetAsTleDataAsync();
 
 //Get a list of all decayed satellites deserialized as a list of objects
-var decayedSatellites = await spaceTrack.SatelliteCatalog.FilterOn(s => s.DecayDate)
-    .IsNotNull()
+var decayedSatellites = await spaceTrack.SatelliteCatalog
+    .FilterOn(s => s.DecayDate)
+      .IsNotNull()
     .GetAsDeSerializedListAsync();
 ```
 
