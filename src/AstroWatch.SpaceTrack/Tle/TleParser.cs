@@ -80,18 +80,16 @@ namespace AstroWatch.SpaceTrack.Tle
                 tleData.Epoch = ConvertEpochToDateTime(year, tleData.EpochDay);
 
                 // First Time Derivative of Mean Motion
-                tleData.FirstDerivativeOfMeanMotion =
-                    double.Parse(line1.Substring(33, 10).Replace(" ",""), CultureInfo.InvariantCulture);
+                tleData.FirstDerivativeOfMeanMotion = double.Parse(line1.Substring(33, 10).Replace(" ",""), CultureInfo.InvariantCulture) * 2;
 
                 // Second Time Derivative of Mean Motion
-                tleData.SecondDerivativeOfMeanMotion = ParseExponentialNotation(line1.Substring(44, 8));
+                tleData.SecondDerivativeOfMeanMotion = ParseExponentialNotation(line1.Substring(44, 8)) * 6;
 
                 // BSTAR Drag Term
                 tleData.BStarDragTerm = ParseExponentialNotation(line1.Substring(53, 8));
 
                 // Ephemeris Type
-                tleData.EphemerisType
-                    = int.Parse(line1.Substring(62, 1));
+                tleData.EphemerisType = int.Parse(line1.Substring(62, 1));
 
                 // Element Set Number
                 tleData.ElementSetNumber = int.Parse(line1.Substring(64, 4).Trim());
