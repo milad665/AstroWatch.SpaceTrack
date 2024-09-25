@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AstroWatch.SpaceTrack.Tle
 {
+    [ExcludeFromCodeCoverage]
     public class TleData
     {
         public string Name { get; set; }

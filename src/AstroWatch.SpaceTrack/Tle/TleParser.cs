@@ -145,11 +145,12 @@ namespace AstroWatch.SpaceTrack.Tle
             var tleName = (string) null;
             var tleLine1 = (string) null;
                 
-            foreach (var line in tleSetLines)
+            foreach (var ln in tleSetLines)
             {
-                if (string.IsNullOrWhiteSpace(line))
+                if (string.IsNullOrWhiteSpace(ln))
                     continue;
-                
+
+                var line = ln.Trim();
                 var str = line.Split(' ')[0];
                 if (str != "1" && str != "2")
                 {
@@ -161,19 +162,7 @@ namespace AstroWatch.SpaceTrack.Tle
                     if (str == "1")
                         tleLine1 = line;
                     if (str == "2" && tleLine1 != null)
-                    {
-                        if (!tleName.Contains("TBA"))
-                        {
-                            try
-                            {
-                                tleSet.Add(ParseTle(tleName, tleLine1, line));
-                            }
-                            catch (Exception e)
-                            {
-                                Console.WriteLine(e);
-                            }
-                        }
-                    }
+                        tleSet.Add(ParseTle(tleName, tleLine1, line));
                 }
             }
 
@@ -193,7 +182,7 @@ namespace AstroWatch.SpaceTrack.Tle
 
             var offset = value.StartsWith("-") ? 1 : 0;
             // Insert decimal point after first non-space character
-            string mantissaPart = value.Substring(0, 5).Insert(1 + offset, ".").Replace(" ", "");
+            string mantissaPart = value.Substring(0, 5).Insert( offset, "0.").Replace(" ", "");
             string exponentPart = value.Substring(5+offset).Replace(" ", "");
 
             // Replace '+' with nothing, '-' remains for negative exponents
